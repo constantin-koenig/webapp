@@ -71,8 +71,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "web" do |web|
     web.vm.box = "bento/rockylinux-8"
+    web.vm.network :private_network, ip: "192.168.60.10"
+    web.vm.hostname = "web01"
   end
   config.vm.define "db" do |db|
     db.vm.box = "bento/rockylinux-8"
+    db.vm.network :private_network, ip: "192.168.60.11"
+    db.vm.hostname = "db01"
   end
 end
