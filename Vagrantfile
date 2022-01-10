@@ -78,5 +78,6 @@ Vagrant.configure("2") do |config|
     db.vm.box = "bento/rockylinux-8"
     db.vm.network :private_network, ip: "192.168.60.11"
     db.vm.hostname = "db01"
+    db.vm.provision "shell", path: "provision_dbserver.sh"
   end
 end
