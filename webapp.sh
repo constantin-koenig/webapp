@@ -6,7 +6,7 @@ dnf -y install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
 dnf -y install httpd
 dnf -y module reset php
 dnf -y module install php:remi-8.0
-dnf -y install
+dnf -y install \
     php \
     php-cli \
     php-common \
@@ -16,7 +16,7 @@ dnf -y install
     php-mysqlnd
 
 
-
+phpinfo_file=/var/www/html/phpinfo.php
 [ ! -f "${phpinfo_file}" ] && echo "<?php phpinfo();" > "${phpinfo_file}"
 
 systemctl is-enabled httpd &>/dev/null || (systemctl enable httpd &>/dev/null && echo "httpd enabled")
@@ -24,7 +24,5 @@ systemctl status httpd &>/dev/null || (systemctl start httpd && echo "httpd star
 
 sudo systemctl enable php-fpm
 sudo systemctl start php-fpm
-sudo dnf install telnet
-telnet localhost 80
 sudo systemctl restart httpd
 
